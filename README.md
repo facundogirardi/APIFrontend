@@ -15,6 +15,7 @@ https://www.observatoriopyme.org.ar/la-fundacion/historia-y-actualidad/
 * [Tecnologia](#Tecnologia)
 * [Instalacion](#Instalacion)
 * [Navegadores soportados](#Navegadores-soportados)
+* [Actualizacion 2026](#Actualizacion-2026)
 * [Recursos](#Recursos)
 * [Flujo](#Flujo)
 
@@ -32,22 +33,36 @@ https://www.observatoriopyme.org.ar/la-fundacion/historia-y-actualidad/
 
 ## Instalacion
 
-## FrontEnd
+### Requisitos
 
-* Descargar la aplicacion del repositorio https://gitlab.com/facundogirardi/aplicaciones-interactivas-frontend
-* En la carpeta del proyecto ejecutar <b>npm install</b>
-* <b>cd</b> aplicaciones-interactivas
-* Luego dar <b>npm start</b>
+* Node.js 18 o superior (probado con Node.js 24)
+* El backend levantado (por defecto en http://localhost:4000/)
+
+### FrontEnd (este repositorio)
+
+```bash
+git clone https://github.com/facundogirardi/APIFrontend.git
+cd APIFrontend
+npm install
+npm start
+```
+
 * Se levantará en local http://localhost:3000/
+* <b>npm run build</b> genera la versión optimizada en la carpeta <b>build/</b>
+* El repositorio incluye un <b>.npmrc</b> con `legacy-peer-deps=true`, necesario porque `base-shell` y `material-ui-shell` declaran dependencias peer antiguas
 
-## BackEnd
+Para apuntar a otro backend, definir la variable <b>REACT_APP_URL</b> (por ejemplo en un archivo <b>.env.local</b>):
 
-* El backend de la aplicacion se encuesta en ek siguiente repositorio https://gitlab.com/facundogirardi/aplicaciones-interactivas-backend
-* En la carpeta del proyecto ejecutar <b>npm install</b>
-* <b>cd</b> aplicaciones-interactivas
-* Luego dar <b>npm start</b> o <b>nodemon --exec npm start</b> (Requiere tener instalado el nodemon*) -> Por default se encuentra apuntando a local para cambiar, dirijase a Controller/webServices
-* Se levantará en local http://localhost:4000/
-* Tambien se encuentra hosteado en Heroku https://api-benchmark-back.herokuapp.com/
+```bash
+REACT_APP_URL=http://localhost:4000/
+```
+
+### BackEnd
+
+* El backend de la aplicacion se encuentra en el repositorio https://github.com/facundogirardi/APIBackend
+* Ver las instrucciones de instalación en su README
+
+> **Nota:** el deploy en Heroku que se usó durante la cursada ya no está disponible; el backend debe levantarse en local.
 
 ## Usuarios
 
@@ -60,10 +75,20 @@ Se probo en los siguientes navegadores:
 
 <img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/chrome-logo.png?raw=true" width="60" height="60"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/firefox-logo.png" width="60" height="60"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/opera-logo.png" width="60" height="60">
 
+## Actualizacion 2026
+
+Mantenimiento de dependencias realizado en noviembre de 2026:
+
+* react-scripts actualizado de 3.4 a 5.0.1 (webpack 5), lo que permite compilar con versiones actuales de Node.js sin `--openssl-legacy-provider`
+* React 16.14, Material-UI 4.12, react-router-dom 5.3, react-redux 7.2 y notistack actualizados a la última versión de su rama
+* Se eliminaron dependencias que no se usaban en el código y se agregaron las que se usaban sin estar declaradas
+* Se agregó <b>.npmrc</b> con `legacy-peer-deps=true`
+* Se eliminó el `yarn.lock` duplicado (el proyecto usa npm con `package-lock.json`)
+
 ## Recursos
 
-- GIT: <https://gitlab.com/facundogirardi/api-benchmarking>
-- GIT: <https://gitlab.com/facundogirardi/aplicaciones-interactivas-backend>
+- Frontend: <https://github.com/facundogirardi/APIFrontend>
+- Backend: <https://github.com/facundogirardi/APIBackend>
 
 ## Flujo
 ![Product Presentation Image](https://i.ibb.co/HF4scZD/Flujo.png)
